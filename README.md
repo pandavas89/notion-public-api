@@ -17,3 +17,9 @@ Notion public API 사용방법 예제입니다.
 
 > Endpoint: POST `/public-api/append`
 
+## 테스트 방법
+### 1. 가상환경 설치
+루트 폴더에서 `poetry install` 실행하여 가상환경 설치
+
+### 2. 실행
+루트 폴더에서 `poetry run uvicorn main:app --reload` 실행하여 FastAPI 실행
