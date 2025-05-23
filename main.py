@@ -8,6 +8,7 @@ from fastapi import FastAPI, APIRouter, Request
 from fastapi.responses import HTMLResponse
 
 from register.register import get_access_token
+from append.append import append_block
 
 app = FastAPI()
 
@@ -21,5 +22,12 @@ def register(request: Request):
         print(access_token) # 배포 시 ACCESS TOKEN 저장 코드로 대체
         return {"message": "퍼블릭 API 등록 성공"}
     return {"message": "퍼블릭 API 등록 실패"}
+
+@public_api_router.post("/append")
+def append(request: Request, access_token: str, page_id: str, text: str):
+    result = append_block(access_token, page_id, text)
+    if result:
+        return {"message": "페이지 삽입 성공"}
+    return {"message": "페이지 삽입 실패"}
 
 app.include_router(public_api_router)
